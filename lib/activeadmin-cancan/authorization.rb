@@ -19,7 +19,7 @@ ActiveAdmin::DSL.class_eval do
     @config = config
     resource = controller.resource_class
     instance_eval do
-      menu :if => proc{ can?(:manage, resource) }
+      menu :if => proc{ can?(:manage, Kernel.const_get(resource.to_s.classify)) }
     end
   end
 end
